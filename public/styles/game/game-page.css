@@ -1,0 +1,615 @@
+/*******************************************************
+********************* CONTENEDOR DE PÁGINA *********************
+*******************************************************/
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: center;
+    font-family: var(--font-body);
+}
+
+/*******************************************************
+********************* BANNER PRINCIPAL (HERO) ******************
+*******************************************************/
+
+.game-banner {
+    width: 100%;
+    max-width: 1500px;
+    min-height: 500px;
+    background-image: url("../../assets/game-page/HLBanner.webp");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+
+    -webkit-mask-image:
+        linear-gradient(to right, transparent, black 10%, black 80%, transparent),
+        linear-gradient(to bottom, transparent, black 10%, black 80%, transparent);
+    mask-image:
+        linear-gradient(to right, transparent, black 10%, black 80%, transparent),
+        linear-gradient(to bottom, transparent, black 10%, black 80%, transparent);
+    mask-composite: intersect;
+
+    @media (max-width: 600px) {
+        min-height: 300px;
+    }
+}
+
+/*******************************************************
+********************* LAYOUT DE INFO (2 columnas) ***************
+*******************************************************/
+
+.game-info {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin-top: -250px;
+    padding: 0px 20px;
+    z-index: 99;
+
+    @media (max-width: 750px) {
+        grid-template-columns: 1fr;
+        margin-top: -100px;
+    }
+}
+
+.column-1 {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    align-items: center;
+    width: fit-content;
+    overflow: hidden;
+
+    @media (max-width: 750px) {
+        align-items: start;
+    }
+}
+
+.column-2 {
+    margin-top: 260px;
+    padding-left: 40px;
+    padding-right: 10px;
+    overflow: hidden;
+
+    @media (max-width: 750px) {
+        margin-top: 20px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
+/*******************************************************
+********************* PORTADA DEL JUEGO ************************
+*******************************************************/
+
+.game-pic {
+    border: 0px solid rgb(56, 55, 55);
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+
+    @media (max-width: 750px) {
+        max-width: 170px;
+        justify-content: start;
+    }
+}
+
+.game-pic img {
+    max-width: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+    transition: all 0.2s ease-in-out;
+}
+
+/*******************************************************
+********************* TÍTULO Y DESCRIPCIÓN **********************
+*******************************************************/
+
+.game-title {
+    color: white;
+    font-size: 50px;
+    font-weight: 700;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: end;
+    text-align: start;
+
+    @media (max-width: 750px) {
+        flex-direction: column;
+        align-items: start !important;
+        gap: 10px;
+        font-size: 35px;
+    }
+}
+
+.game-title-developer {
+    font-size: 18px;
+    font-weight: 400;
+    padding-top: 10px;
+}
+
+.game-title-date {
+    font-size: 20px;
+    font-weight: 200;
+    padding-bottom: 7px;
+
+    @media (max-width: 750px) {
+        font-size: 18px;
+    }
+}
+
+.game-description {
+    font-size: 18px;
+    font-weight: 400;
+    font-family: var(--font-body);
+    color: #ffffff;
+    padding-top: 20px;
+    text-align: justify;
+
+    @media (max-width: 750px) {
+        font-size: 15px;
+    }
+}
+
+.company-name {
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 550;
+}
+
+
+.hidden-game-info {
+    margin-top: 20px;
+    display: none;
+
+    @media (max-width: 750px) {
+        display: block;
+    }
+}
+
+.responsive-dissapear {
+    @media (max-width: 750px) {
+        display: none;
+    }
+}
+
+.responsive-change-to-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    width: 100%;
+
+    @media (max-width: 750px) {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+/*******************************************************
+********************* PANEL DE ACCIONES (log/rating) *************
+*******************************************************/
+
+.game-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-top: 20px;
+    background: linear-gradient(180deg, var(--bg-surface), var(--bg-base));
+    border-radius: 10px;
+    flex: 1;
+}
+
+.log-button {
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 6px;
+    border: none;
+    font-family: var(--font-banner);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-hover));
+    box-shadow: var(--shadow-md);
+    transition: all .1s ease-in-out;
+}
+
+.log-button:hover {
+    background: linear-gradient(135deg, var(--brand-hover), var(--brand-primary));
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+.stars-container {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 10px;
+}
+
+.star-icon {
+    color: #5a5a5a;
+    font-size: 26px;
+    cursor: pointer;
+    transition: color .15s ease, transform .15s ease;
+}
+
+.star-icon:hover,
+.star-icon:hover~.star-icon {
+    color: goldenrod;
+}
+
+.star-icon:hover {
+    transform: scale(1.15);
+}
+
+.user-states {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 0px 20px;
+}
+
+.state-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.state-icon {
+    color: #5a5a5a;
+    font-size: 25px;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+
+    &:hover {
+        color: #ffffff;
+    }
+}
+
+.state-text {
+    color: #ffffff;
+    font-family: var(--font-body);
+}
+
+.add-to-list-button {
+    width: 100%;
+    padding: 12px;
+    cursor: pointer;
+    color: #d8d8d8;
+    background-color: transparent;
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 0 0 10px 10px;
+    transition: background-color .15s ease, color .15s ease;
+}
+
+.add-to-list-button:hover {
+    background-color: var(--bg-dark);
+    color: #ffffff;
+}
+
+/*******************************************************
+********************* PANEL DE PLATAFORMAS **********************
+*******************************************************/
+
+.platforms-box {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 24px;
+    padding: 20px 25px;
+    min-width: 200px;
+    background: linear-gradient(180deg, var(--bg-surface), var(--bg-base));
+    border-radius: 10px;
+    flex: 1;
+}
+
+.platform-row {
+    display: flex;
+    gap: 15px;
+}
+
+.platforms-image {
+    color: white;
+    position: relative;
+    overflow: hidden;
+    height: 21px;
+    width: 21px;
+}
+
+.platforms-image img {
+    display: block;
+    width: auto;
+    height: auto;
+}
+
+.platforms-text {
+    font-family: var(--font-body);
+    letter-spacing: 0.8px;
+}
+
+/*******************************************************
+******************** PANEL DE OTRA INFO ****************
+*******************************************************/
+
+.other-info-box {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 20px;
+    margin-top: 30px;
+    background: linear-gradient(180deg, var(--bg-surface), var(--bg-base));
+    border-radius: 10px;
+    font-family: var(--font-body);
+}
+
+.other-info-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-bottom: 10px;
+}
+
+.other-info-body {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+
+    @media (max-width: 750px) {
+        gap: 15px;
+    }
+}
+
+.review-graph {
+    max-width: 100%;
+}
+
+.review-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.review-number {
+    font-size: 90px;
+    font-weight: 600;
+}
+
+
+/*******************************************************
+*********COLUMNA REVIEW/MEDIA/SERIES/COMMUNITY**********
+*******************************************************/
+
+.details-column {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    align-items: center;
+    padding: 0px 5px;
+}
+
+.details-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    row-gap: 20px;
+    margin-bottom: 15px;
+}
+
+/***********************************
+**************REVIEWS***************
+************************************/
+
+.review-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    row-gap: 5px;
+    margin-bottom: 15px;
+}
+
+.review-box {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    border: 1px solid #262327;
+    border-radius: 10px;
+    background-color: rgb(31, 20, 31);
+    padding: 20px;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 150px;
+}
+
+.mini-pfp img {
+    height: 40px;
+    width: 100%;
+}
+
+.review-content {
+    display: flex;
+    flex-direction: column;
+    padding-top: 6px;
+}
+
+.reviewed-stars {
+    margin-top: 7px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.grey-star {
+    color: #5a5a5a;
+}
+
+.yellow-star {
+    color: goldenrod;
+}
+
+.review-text {
+    margin-top: 10px;
+}
+
+.image-with-text {
+    font-size: 16px;
+    filter: brightness(0.4);
+    transition: filter 0.3s ease;
+}
+
+.image-with-text img {
+    display: block;
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+}
+
+.image-with-text:hover {
+    filter: brightness(3.2);
+    cursor: pointer;
+}
+
+.like-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: fit-content;
+}
+
+.like-counter {
+    color: white;
+    opacity: 0.7;
+    font-size: 13px;
+}
+
+/***********************************
+****************LISTS***************
+************************************/
+
+.list-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    row-gap: 5px;
+    margin-bottom: 15px;
+}
+
+.list-box {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 20px;
+    border-radius: 10px;
+    padding: 15px !important;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 150px;
+
+    @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+        place-items: center;
+        padding: 15px 15px 30px 15px !important;
+    }
+}
+
+.list-cover{
+    display: flex;
+}
+
+.not-first-img{
+    margin-top: calc((sibling-index() - 1) * 9px);
+    margin-left: -100px;
+}
+
+.list-cover img{
+    width: 130px;
+    height: 210px;
+    border-radius: 5px;
+    z-index: calc(5 - sibling-index());
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+
+    &:hover{
+        transform: scale(1.02);
+    }
+}
+
+.list-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.list-title {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.list-text {
+    text-align: justify;
+}
+
+.state-link{
+    font-size: 16px;
+    color: rgb(255, 255, 255, 0.6);
+}
+
+/***********************************
+********FORMULARIO DE REVIEW********
+************************************/
+
+.review-form {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid #262327;
+    border-radius: 10px;
+    background-color: rgb(31, 20, 31);
+    padding: 20px;
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+.review-form-open {
+    display: flex;
+}
+
+.review-input {
+    padding: 10px;
+    border: 1px solid #616161;
+    border-radius: 6px;
+    background-color: var(--bg-base);
+    color: white;
+    font-family: var(--font-body);
+    font-size: 15px;
+}
+
+.form-error {
+    color: #ff8a8a;
+    font-family: var(--font-body);
+    font-size: 14px;
+}

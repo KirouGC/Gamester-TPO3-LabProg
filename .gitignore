@@ -1,0 +1,5 @@
+# Dependencias: se vuelven a descargar con "npm install", no se suben al repositorio.
+node_modules/
+
+# Claves de IGDB: son privadas, no se suben al repositorio.
+.env

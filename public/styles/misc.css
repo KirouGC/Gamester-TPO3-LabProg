@@ -1,0 +1,123 @@
+/*******************************************************
+********************* DUMMY TEXT ***********************
+*******************************************************/
+
+.dummy-text{
+    display: block;
+    margin: 20px;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+}
+
+/*******************************************************
+********************* MENSAJE DE BIENVENIDA ********************
+*******************************************************/
+
+.welcome-box {
+    color: white;
+    opacity: 0.85;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+/*******************************************************
+***************** TEXTO CON LINEA ABAJO ****************
+*******************************************************/
+
+.lined-text{
+    color: white;
+    font-family: var(--font-body);
+    border-bottom: 1px solid;
+    padding-bottom: 4px;
+}
+
+.gradient-lined-text {
+    color: white;
+    font-family: var(--font-body);
+    border-bottom: 1px solid;
+    border-image: linear-gradient(to right, rgba(255, 255, 255, 0.6), transparent) 1;
+    padding-bottom: 4px;
+}
+
+/*******************************************************
+***************** FOTOS DE PERFIL **********************
+*******************************************************/
+
+.mini-pfp{
+    height: 40px;
+    width: 40px;
+    margin-right: 18px;
+}
+
+/*******************************************************
+*************** IMAGEN CON TEXTO AL LADO ***************
+*******************************************************/
+
+.image-with-text{
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
+    align-items: center;
+}
+
+/*******************************************************
+******************* TEXTO CARGAR MÁS *******************
+*******************************************************/
+
+.load-more-text{
+    color: rgb(193, 193, 193);
+    font-size: 20px;
+    filter: brightness(0.6); 
+    transition: filter 0.3s ease;
+    margin-top: 20px;
+}
+
+.load-more-text:hover{
+    filter: brightness(3.2); 
+    cursor: pointer;
+}
+
+/*******************************************************
+******************* TEXTO DE SECCION *******************
+*******************************************************/
+
+.section-text{
+    filter: brightness(0.8); 
+    transition: filter 0.3s ease;
+}
+
+.section-text:hover{
+    filter: brightness(3.2); 
+    cursor: pointer;
+}
+
+.selected-text{
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #616161;
+}
+
+/*******************************************************
+******************* TEXTO DE ERROR *********************
+*******************************************************/
+
+.error-text{
+    color: rgb(193, 193, 193);
+    font-family: var(--font-body);
+    white-space: nowrap;
+    padding: 20px 0px;
+}
+
+/*******************************************************
+********************* NO SUBRAYADO *********************
+*******************************************************/
+
+.no-lined-text{
+    text-decoration: none;
+}

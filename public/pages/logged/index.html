@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+
+    <link rel="stylesheet" href="../../styles/base.css">
+    <link rel="stylesheet" href="../../styles/header.css">
+    <link rel="stylesheet" href="../../styles/misc.css">
+    <link rel="stylesheet" href="../../styles/games-grid.css">
+    <link rel="stylesheet" href="../../styles/footer.css">
+
+</head>
+
+<body>
+    <header class="header-container container-full">
+        <div class="header container-xxl">
+            <div class="logo">
+                <a href="#" class="logo-img">
+                    <img src="../../assets/logo.png" alt="Gamester" class="logo-img">
+                </a>
+                <h1 class="logo-text" data-text="Gamester">
+                    <span>Game</span>ster
+                </h1>
+            </div>
+            <nav class="nav" aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a class="nav-list-item" href="#">Home</a></li>
+                    <li><a class="nav-list-item" href="#">Trending</a></li>
+                    <li><a class="nav-list-item" href="#">Last Reviews</a></li>
+                </ul>
+            </nav>
+            <button class="join-button" type="button">
+                Join the community
+            </button>
+        </div>
+    </header>
+    <main class="main container-xxl">
+        <section class="welcome-box">
+            <p>"Welcome back, [NOMBRE]...</p>
+            <p>[ESLOGAN]"</p>
+        </section>
+
+        <section class="main-box-container">
+            <div class="pruebaTextoLinea">
+                <h2>Trending</h2>
+            </div>
+            <div class="box-container-games" id="trending">
+                <!-- Los juegos de esta seccion se cargan desde la API (ver scripts/home.js) -->
+            </div>
+        </section>
+
+        <section class="main-box-container">
+            <div class="pruebaTextoLinea">
+                <h2>New from friends</h2>
+            </div>
+            <div class="box-container-games" id="recently-reviewed">
+                <!-- Los juegos de esta seccion se cargan desde la API (ver scripts/home.js) -->
+            </div>
+        </section>
+
+        <section class="main-box-container">         
+            <div class="pruebaTextoLinea">
+                <h2>Most reviewed</h2>
+            </div>
+            <div class="box-container-games" id="weekly-selection">
+                <!-- Los juegos de esta seccion se cargan desde la API (ver scripts/home.js) -->
+            </div>
+        </section>
+
+        <section class="main-box-container">
+            <div class="pruebaTextoLinea">
+                <h2>Pictures of community</h2>
+            </div>
+            <div class="box-container-pictures">
+                <figure class="pictures-box">
+                    <img width="238" height="424"
+                        src="https://media.vandal.net/m/9-2024/17/202491710435184_1.jpg" alt="portada2">
+                </figure>
+                <figure class="pictures-box">
+                    <img width="238" height="424"
+                        src="https://i.ytimg.com/vi/CHhhNRKaOfc/maxresdefault.jpg" alt="portada1">
+                </figure>
+                <figure class="pictures-box">
+                    <img width="238" height="424"
+                        src="https://mp1st.com/wp-content/uploads/2023/03/counter-strike-2-gameplay.png" alt="portada1">
+                </figure>
+                <figure class="pictures-box">
+                    <img width="238" height="424"
+                        src="https://i.ytimg.com/vi/z8PvTrE54nk/maxresdefault.jpg" alt="portada1">
+                </figure>
+                <figure class="pictures-box">
+                    <img width="238" height="424"
+                        src="https://i.ytimg.com/vi/h84SWybh4Hw/maxresdefault.jpg" alt="portada1">
+                </figure>
+                <figure class="pictures-box">
+                    <img
+                        src="https://cdn.mos.cms.futurecdn.net/KG6Yb2jrEW6VU3W863TidR.jpg" alt="portada1">
+                </figure>
+            </div>
+        </section>
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src="../../scripts/game-card.js"></script>
+    <script src="../../scripts/home.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "gamester-tpo3-lab-prog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KirouGC/Gamester-TPO3-Lab-Prog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/KirouGC/Gamester-TPO3-Lab-Prog/issues"
+  },
+  "homepage": "https://github.com/KirouGC/Gamester-TPO3-Lab-Prog#readme",
+  "dependencies": {
+    "express": "^5.3.0"
+  }
+}
