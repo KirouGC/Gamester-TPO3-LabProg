@@ -62,7 +62,8 @@ function mostrarJuego(juego) {
     })
 
     document.querySelectorAll(".game-title-date").forEach((elemento) => {
-        elemento.textContent = juego.anio
+        // Los juegos de IGDB sin fecha de salida no traen año.
+        elemento.textContent = juego.anio || "TBA"
     })
 
     document.querySelectorAll(".company-name").forEach((elemento) => {
@@ -133,9 +134,22 @@ function mostrarErrorDePagina(mensaje) {
 ******************* JUEGOS SIMILARES *******************
 *******************************************************/
 
-// Los juegos similares son los que tienen el mismo genero.
+// Los juegos similares de un juego local son los que tienen el mismo genero.
+// Los juegos de IGDB ya traen su lista de similares, que define IGDB.
 async function cargarSimilares(juego) {
     const contenedor = document.querySelector("#similar-games")
+
+    if (juego.similares) {
+        juego.similares.slice(0, CANTIDAD_SIMILARES).forEach((otroJuego) => {
+            contenedor.appendChild(crearTarjeta(otroJuego))
+        })
+
+        if (juego.similares.length === 0) {
+            mostrarTextoEnContenedor(contenedor, "No similar games yet")
+        }
+
+        return
+    }
 
     try {
         // Se pide uno de mas porque en la lista puede venir el mismo juego que se esta viendo.

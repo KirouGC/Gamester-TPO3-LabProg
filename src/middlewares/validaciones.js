@@ -3,6 +3,7 @@
 // Si esta todo bien, llaman a next() para que siga el controlador.
 
 const config = require("../config/config");
+const igdbService = require("../services/igdb.service");
 
 // Valores permitidos para algunos campos de los juegos.
 const GENEROS = ["shooter", "action", "adventure", "rpg", "survival", "horror", "platformer", "puzzle"];
@@ -15,11 +16,16 @@ function esTexto(valor) {
 }
 
 // Valida el :idJuego de la URL.
+// Puede ser un numero (juego local, por ejemplo "1") o "igdb-" y un numero (juego de IGDB, por ejemplo "igdb-1942").
 function validarIdJuego(req, res, next) {
+    if (igdbService.esIdIgdb(req.params.idJuego) && Number(req.params.idJuego.slice(5)) > 0) {
+        return next();
+    }
+
     const id = Number(req.params.idJuego);
 
     if (!Number.isInteger(id) || id < 1) {
-        return res.status(400).json({ error: "El id del juego debe ser un número entero mayor a 0" });
+        return res.status(400).json({ error: "El id del juego debe ser un número entero mayor a 0, o \"igdb-\" seguido de un número" });
     }
 
     next();

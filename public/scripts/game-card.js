@@ -23,11 +23,14 @@ function crearTarjeta(juego) {
     nombre.classList.add("hidden-name")
     nombre.textContent = juego.titulo + " "
 
-    const anio = document.createElement("span")
-    anio.classList.add("hidden-year")
-    anio.textContent = "(" + juego.anio + ")"
+    // Los juegos de IGDB que todavia no tienen fecha de salida no traen año.
+    if (juego.anio) {
+        const anio = document.createElement("span")
+        anio.classList.add("hidden-year")
+        anio.textContent = "(" + juego.anio + ")"
+        nombre.appendChild(anio)
+    }
 
-    nombre.appendChild(anio)
     tarjeta.appendChild(portada)
     tarjeta.appendChild(nombre)
 

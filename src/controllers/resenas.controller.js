@@ -1,17 +1,22 @@
 const config = require("../config/config");
 const juegosService = require("../services/juegos.service");
 const resenasService = require("../services/resenas.service");
+const igdbService = require("../services/igdb.service");
+
+// Con que id se guardan las reseñas de un juego:
+// los juegos locales usan su numero (1) y los de IGDB su id completo ("igdb-1942").
+function claveDeJuego(idJuego) {
+    return igdbService.esIdIgdb(idJuego) ? idJuego : Number(idJuego);
+}
 
 // GET /api/juegos/:idJuego/resenas?cantidad=10&from=0
-function listarResenas(req, res) {
-    const idJuego = Number(req.params.idJuego);
+async function listarResenas(req, res) {
+    const idJuego = claveDeJuego(req.params.idJuego);
     const cantidad = Number(req.query.cantidad) || config.CANTIDAD_POR_DEFECTO;
     const from = Number(req.query.from) || 0;
 
     // Si el juego no existe, no tiene sentido buscar sus reseñas.
-    const juego = juegosService.obtenerJuegoPorId(idJuego);
-
-    if (!juego) {
+    if (!await juegosService.existeJuego(req.params.idJuego)) {
         return res.status(404).json({ error: "No existe un juego con id " + req.params.idJuego });
     }
 
@@ -21,12 +26,10 @@ function listarResenas(req, res) {
 }
 
 // POST /api/juegos/:idJuego/resenas
-function crearResena(req, res) {
-    const idJuego = Number(req.params.idJuego);
+async function crearResena(req, res) {
+    const idJuego = claveDeJuego(req.params.idJuego);
 
-    const juego = juegosService.obtenerJuegoPorId(idJuego);
-
-    if (!juego) {
+    if (!await juegosService.existeJuego(req.params.idJuego)) {
         return res.status(404).json({ error: "No existe un juego con id " + req.params.idJuego });
     }
 

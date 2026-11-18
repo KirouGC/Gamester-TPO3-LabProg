@@ -1,4 +1,5 @@
 const juegos = require("../data/juegos");
+const igdbService = require("./igdb.service");
 
 // Devuelve una "pagina" de juegos.
 //   cantidad -> cuantos juegos devolver
@@ -24,6 +25,16 @@ function obtenerJuegos(cantidad, from, seccion, genero) {
 // Devuelve el juego con ese id, o undefined si no existe.
 function obtenerJuegoPorId(id) {
     return juegos.find((juego) => juego.id === id);
+}
+
+// Devuelve true si existe un juego con ese id. El id viene de la URL, asi que es un texto:
+// "1" es un juego local y "igdb-1942" es un juego de IGDB (se le pregunta a IGDB).
+async function existeJuego(idJuego) {
+    if (igdbService.esIdIgdb(idJuego)) {
+        return igdbService.estaConfigurado() && Boolean(await igdbService.obtenerJuegoIgdb(idJuego));
+    }
+
+    return obtenerJuegoPorId(Number(idJuego)) !== undefined;
 }
 
 // Crea un juego nuevo con los datos recibidos y lo agrega a la lista.
@@ -69,4 +80,4 @@ function actualizarJuego(id, datos) {
     return juego;
 }
 
-module.exports = { obtenerJuegos, obtenerJuegoPorId, crearJuego, actualizarJuego };
+module.exports = { obtenerJuegos, obtenerJuegoPorId, existeJuego, crearJuego, actualizarJuego };

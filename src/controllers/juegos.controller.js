@@ -16,7 +16,18 @@ function listarJuegos(req, res) {
 }
 
 // GET /api/juegos/:idJuego
-function obtenerJuego(req, res) {
+// El id puede ser de un juego local ("1") o de IGDB ("igdb-1942").
+async function obtenerJuego(req, res) {
+    if (igdbService.esIdIgdb(req.params.idJuego)) {
+        const juegoIgdb = igdbService.estaConfigurado() ? await igdbService.obtenerJuegoIgdb(req.params.idJuego) : undefined;
+
+        if (!juegoIgdb) {
+            return res.status(404).json({ error: "No existe un juego con id " + req.params.idJuego });
+        }
+
+        return res.json(juegoIgdb);
+    }
+
     const id = Number(req.params.idJuego);
     const juego = juegosService.obtenerJuegoPorId(id);
 
