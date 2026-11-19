@@ -42,37 +42,37 @@ const resenas = [
     {
         id: 4,
         idJuego: 1,
-        usuario: "GordonFan98",
+        usuario: "Gman",
         avatar: "/assets/logo.png",
         estrellas: 5,
-        texto: "The best intro in videogame history. That train ride never gets old.",
+        texto: "muy bueno el aplauso",
         likes: 48
     },
     {
         id: 5,
         idJuego: 1,
-        usuario: "crowbar_enjoyer",
+        usuario: "lol",
         avatar: "/assets/logo.png",
         estrellas: 4,
-        texto: "Great game, but the Xen levels are too long.",
+        texto: "una vez yo era el lol",
         likes: 31
     },
     {
         id: 6,
         idJuego: 1,
-        usuario: "BlackMesaIntern",
+        usuario: "Carlito",
         avatar: "/assets/logo.png",
         estrellas: 5,
-        texto: "I played it for the first time this year and it still feels modern.",
+        texto: "soy carlito",
         likes: 12
     },
     {
         id: 7,
         idJuego: 1,
-        usuario: "headcrab_hater",
+        usuario: "mysteryMan",
         avatar: "/assets/logo.png",
         estrellas: 3,
-        texto: "Good shooter, but I got lost too many times.",
+        texto: "yogur",
         likes: 5
     },
 
@@ -83,7 +83,7 @@ const resenas = [
         usuario: "juanpi",
         avatar: "/assets/game-page/review/juanpi.webp",
         estrellas: 4,
-        texto: "Perfect to play with friends. Alone it gets boring.",
+        texto: "viva israel",
         likes: 20
     },
     {
@@ -92,7 +92,7 @@ const resenas = [
         usuario: "Xx_LeonSKratos666_xX",
         avatar: "/assets/game-page/review/leonskratos.webp",
         estrellas: 5,
-        texto: "Would you kindly play this game?",
+        texto: "like y me subscribo",
         likes: 310
     },
     {
@@ -101,7 +101,7 @@ const resenas = [
         usuario: "Jose Riquelme Joe Metry",
         avatar: "/assets/game-page/review/quiensera.webp",
         estrellas: 5,
-        texto: "200 hours and I am still in act 1.",
+        texto: "los odio a todos",
         likes: 87
     },
     {
@@ -110,16 +110,16 @@ const resenas = [
         usuario: "juanpi",
         avatar: "/assets/game-page/review/juanpi.webp",
         estrellas: 5,
-        texto: "Hard but fair. The bosses are incredible.",
+        texto: "aVION 912",
         likes: 64
     },
     {
         id: 12,
         idJuego: 28,
-        usuario: "GordonFan98",
+        usuario: "GordonFan67",
         avatar: "/assets/logo.png",
         estrellas: 5,
-        texto: "Short, funny and smart. The cake is a lie.",
+        texto: "Me gusta mucho el queque",
         likes: 142
     }
 ];
