@@ -121,6 +121,16 @@ const resenas = [
         estrellas: 5,
         texto: "Me gusta mucho el queque",
         likes: 142
+    },
+
+    {
+        id: 13,
+        idJuego: "igdb-1025",
+        usuario: "GordonFan67",
+        avatar: "/assets/logo.png",
+        estrellas: 5,
+        texto: "Me gusta mucho el queque parte dos",
+        likes: 142
     }
 ];
 
