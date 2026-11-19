@@ -1,10 +1,8 @@
 // Carga la pagina de un juego desde la API.
-// El id del juego viene en la direccion: /pages/game/index.html?id=1
 
 const CANTIDAD_RESENAS = 3
 const CANTIDAD_SIMILARES = 6
 
-// Nombre que se muestra para cada plataforma.
 const NOMBRES_PLATAFORMAS = {
     pc: "PC",
     ps: "PlayStation",
@@ -17,12 +15,10 @@ const parametros = new URLSearchParams(window.location.search)
 const idJuego = parametros.get("id")
 
 const botonLog = document.querySelector(".log-button")
-// En la pagina hay dos "Load More..." (reseñas y listas). Este es el de las reseñas.
 const botonCargarMas = document.querySelector(".review-container .load-more-text")
 const formulario = document.querySelector("#review-form")
 const errorFormulario = document.querySelector("#review-error")
 
-// Cuantas reseñas se pidieron hasta ahora (se usa como "from" del proximo pedido).
 let resenasCargadas = 0
 
 /*******************************************************
@@ -34,7 +30,6 @@ async function cargarJuego() {
         const respuesta = await fetch("/api/juegos/" + idJuego)
         const juego = await respuesta.json()
 
-        // Si el juego no existe (404) o el id es invalido (400), se muestra el error.
         if (!respuesta.ok) {
             mostrarErrorDePagina(juego.error)
             return
@@ -55,14 +50,11 @@ function mostrarJuego(juego) {
     portada.src = juego.portada
     portada.alt = juego.titulo
 
-    // El titulo, el año, el desarrollador y la descripcion estan dos veces en el HTML
-    // (una para pantallas grandes y otra para celulares), por eso se usa querySelectorAll.
     document.querySelectorAll(".game-name").forEach((elemento) => {
         elemento.textContent = juego.titulo
     })
 
     document.querySelectorAll(".game-title-date").forEach((elemento) => {
-        // Los juegos de IGDB sin fecha de salida no traen año.
         elemento.textContent = juego.anio || "TBA"
     })
 
@@ -74,8 +66,6 @@ function mostrarJuego(juego) {
         elemento.textContent = juego.descripcion
     })
 
-    // Estos datos vienen de IGDB. Si el juego no esta vinculado con IGDB no existen,
-    // y la pagina queda como antes (banner y puntaje por defecto, sin generos).
     if (juego.banner) {
         document.querySelector(".game-banner").style.backgroundImage = "url(" + juego.banner + ")"
     }
@@ -98,7 +88,6 @@ function mostrarJuego(juego) {
     })
 }
 
-// Arma una fila de la caja "Platforms": el logo y el nombre.
 function crearFilaPlataforma(plataforma) {
     const fila = document.createElement("div")
     fila.classList.add("platform-row")
@@ -118,7 +107,6 @@ function crearFilaPlataforma(plataforma) {
     return fila
 }
 
-// Reemplaza todo el contenido de la pagina por un mensaje de error.
 function mostrarErrorDePagina(mensaje) {
     const contenedor = document.querySelector(".game-container")
     contenedor.innerHTML = ""
@@ -134,8 +122,6 @@ function mostrarErrorDePagina(mensaje) {
 ******************* JUEGOS SIMILARES *******************
 *******************************************************/
 
-// Los juegos similares de un juego local son los que tienen el mismo genero.
-// Los juegos de IGDB ya traen su lista de similares, que define IGDB.
 async function cargarSimilares(juego) {
     const contenedor = document.querySelector("#similar-games")
 
@@ -152,7 +138,6 @@ async function cargarSimilares(juego) {
     }
 
     try {
-        // Se pide uno de mas porque en la lista puede venir el mismo juego que se esta viendo.
         const cantidad = CANTIDAD_SIMILARES + 1
         const respuesta = await fetch("/api/juegos?genero=" + juego.genero + "&cantidad=" + cantidad + "&from=0")
         const datos = await respuesta.json()
@@ -182,14 +167,12 @@ function mostrarTextoEnContenedor(contenedor, mensaje) {
 *********************** RESEÑAS ************************
 *******************************************************/
 
-// Pide la siguiente "pagina" de reseñas y las agrega arriba del "Load More...".
 async function cargarResenas() {
     try {
         const respuesta = await fetch("/api/juegos/" + idJuego + "/resenas?cantidad=" + CANTIDAD_RESENAS + "&from=" + resenasCargadas)
         const datos = await respuesta.json()
 
         datos.resenas.forEach((resena) => {
-            // Si la reseña ya esta en pantalla (porque se acaba de crear), no se repite.
             if (!document.querySelector("#review-" + resena.id)) {
                 botonCargarMas.before(crearCajaResena(resena))
             }
@@ -197,7 +180,6 @@ async function cargarResenas() {
 
         resenasCargadas = resenasCargadas + datos.resenas.length
 
-        // Si ya se pidieron todas, se esconde el "Load More...".
         if (resenasCargadas >= datos.total) {
             botonCargarMas.style.display = "none"
         }
@@ -214,13 +196,11 @@ async function cargarResenas() {
     }
 }
 
-// Arma la caja de una reseña.
 function crearCajaResena(resena) {
     const caja = document.createElement("article")
     caja.classList.add("review-box")
     caja.id = "review-" + resena.id
 
-    // Estrellas: amarillas hasta el puntaje, grises las que faltan para llegar a 5.
     let estrellas = ""
 
     for (let i = 1; i <= 5; i++) {
@@ -247,8 +227,6 @@ function crearCajaResena(resena) {
         </div>
     `
 
-    // Lo que escribio el usuario se pone con textContent para que se muestre como texto
-    // (y no se interprete como HTML).
     caja.querySelector(".mini-pfp").src = resena.avatar
     caja.querySelector(".mini-pfp").alt = resena.usuario
     caja.querySelector(".review-user").textContent = "Review by " + resena.usuario
@@ -257,7 +235,6 @@ function crearCajaResena(resena) {
     return caja
 }
 
-// 99000 -> "99K", 154 -> "154"
 function formatearLikes(likes) {
     if (likes >= 1000) {
         return Math.floor(likes / 1000) + "K"
@@ -272,14 +249,12 @@ botonCargarMas.addEventListener("click", cargarResenas)
 ******************** CREAR RESEÑA **********************
 *******************************************************/
 
-// El boton "Log and Review" muestra u oculta el formulario.
 botonLog.addEventListener("click", () => {
     formulario.classList.toggle("review-form-open")
     formulario.scrollIntoView({ behavior: "smooth", block: "center" })
 })
 
 formulario.addEventListener("submit", async (evento) => {
-    // Evita que el navegador recargue la pagina al enviar el formulario.
     evento.preventDefault()
 
     const nuevaResena = {
@@ -296,13 +271,11 @@ formulario.addEventListener("submit", async (evento) => {
         })
         const datos = await respuesta.json()
 
-        // Si la API rechazo los datos (400), se muestra el mensaje que mando.
         if (!respuesta.ok) {
             errorFormulario.textContent = datos.error
             return
         }
 
-        // La reseña nueva se muestra primera, justo abajo del formulario.
         formulario.after(crearCajaResena(datos))
 
         const textoSinResenas = document.querySelector("#no-reviews")

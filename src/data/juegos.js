@@ -1,5 +1,4 @@
-// Lista de juegos de Gamester.
-// No se usa base de datos: los datos viven en este arreglo mientras el servidor esta prendido.
+// Lista de juegos locales de Gamester.
 //
 // Cada juego tiene:
 //   id            -> numero unico

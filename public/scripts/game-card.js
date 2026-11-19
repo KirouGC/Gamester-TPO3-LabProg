@@ -1,14 +1,4 @@
-// Crea la tarjeta de un juego (la portada con el nombre que aparece al pasar el mouse).
-// Recibe un juego de la API y devuelve el elemento listo para agregar a la pagina.
-//
-// Queda armado asi:
-// <a class="game-box" href="/pages/game/index.html?id=1">
-//     <img src="..." alt="Hal Lai">
-//     <span class="hidden-name">
-//         Hal Lai
-//         <span class="hidden-year">(1998)</span>
-//     </span>
-// </a>
+// Crea la tarjeta de un juego.
 
 function crearTarjeta(juego) {
     const tarjeta = document.createElement("a")
@@ -23,7 +13,6 @@ function crearTarjeta(juego) {
     nombre.classList.add("hidden-name")
     nombre.textContent = juego.titulo + " "
 
-    // Los juegos de IGDB que todavia no tienen fecha de salida no traen año.
     if (juego.anio) {
         const anio = document.createElement("span")
         anio.classList.add("hidden-year")

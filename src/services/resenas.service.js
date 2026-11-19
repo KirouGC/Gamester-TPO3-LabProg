@@ -1,6 +1,5 @@
 const resenas = require("../data/resenas");
 
-// Devuelve una "pagina" de reseñas de un juego.
 function obtenerResenasDeJuego(idJuego, cantidad, from) {
     const lista = resenas.filter((resena) => resena.idJuego === idJuego);
 
@@ -12,7 +11,6 @@ function obtenerResenasDeJuego(idJuego, cantidad, from) {
 
 // Crea una reseña nueva para un juego y la agrega a la lista.
 function crearResena(idJuego, datos) {
-    // El id nuevo es el id de la ultima reseña + 1.
     const ultimaResena = resenas[resenas.length - 1];
 
     const resena = {

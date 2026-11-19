@@ -89,16 +89,6 @@ Si no se manda `cantidad` se devuelven 10. El máximo es 50.
 - `plataformas`: pc, ps, xbox, nintendo, sega
 - `seccion`: trending, recently-reviewed, recently-released, weekly-selection o catalogo
 
-### Body de una reseña (POST)
-
-```json
-{
-    "usuario": "juanpi",
-    "estrellas": 5,
-    "texto": "Muy bueno"
-}
-```
-
 ### Respuestas
 
 | Código | Cuándo |
@@ -114,9 +104,3 @@ Los errores tienen siempre esta forma:
 ```json
 { "error": "El campo \"titulo\" es obligatorio y debe ser un texto" }
 ```
-
-## Notas
-
-- No se usa base de datos: lo que se crea o modifica se pierde al reiniciar el servidor.
-- El paso a paso de cómo se armó está en los archivos `HITO-1.md` a `HITO-8.md`, y la
-  conexión con IGDB en `HITO-10.md`.

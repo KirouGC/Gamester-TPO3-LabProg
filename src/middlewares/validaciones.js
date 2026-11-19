@@ -1,22 +1,16 @@
 // Middlewares que validan los datos de entrada.
-// Si algo esta mal, responden con error 400 y un mensaje explicando el problema.
-// Si esta todo bien, llaman a next() para que siga el controlador.
 
 const config = require("../config/config");
 const igdbService = require("../services/igdb.service");
 
-// Valores permitidos para algunos campos de los juegos.
 const GENEROS = ["shooter", "action", "adventure", "rpg", "survival", "horror", "platformer", "puzzle"];
 const PLATAFORMAS = ["pc", "ps", "xbox", "nintendo", "sega"];
 const SECCIONES = ["trending", "recently-reviewed", "recently-released", "weekly-selection", "catalogo"];
 
-// Devuelve true si el valor es un texto que no esta vacio.
 function esTexto(valor) {
     return typeof valor === "string" && valor.trim() !== "";
 }
 
-// Valida el :idJuego de la URL.
-// Puede ser un numero (juego local, por ejemplo "1") o "igdb-" y un numero (juego de IGDB, por ejemplo "igdb-1942").
 function validarIdJuego(req, res, next) {
     if (igdbService.esIdIgdb(req.params.idJuego) && Number(req.params.idJuego.slice(5)) > 0) {
         return next();
@@ -31,8 +25,6 @@ function validarIdJuego(req, res, next) {
     next();
 }
 
-// Valida ?cantidad= y ?from= de los listados.
-// Los dos son opcionales, pero si se mandan tienen que ser numeros validos.
 function validarPaginacion(req, res, next) {
     if (req.query.cantidad !== undefined) {
         const cantidad = Number(req.query.cantidad);
@@ -53,7 +45,6 @@ function validarPaginacion(req, res, next) {
     next();
 }
 
-// Valida los filtros ?seccion= y ?genero= del listado de juegos (son opcionales).
 function validarFiltrosJuegos(req, res, next) {
     if (req.query.seccion !== undefined && !SECCIONES.includes(req.query.seccion)) {
         return res.status(400).json({ error: "\"seccion\" debe ser uno de estos valores: " + SECCIONES.join(", ") });
@@ -66,7 +57,6 @@ function validarFiltrosJuegos(req, res, next) {
     next();
 }
 
-// Valida el body para crear o actualizar un juego.
 function validarJuego(req, res, next) {
     const datos = req.body;
 

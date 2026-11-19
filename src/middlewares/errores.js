@@ -6,15 +6,13 @@ function rutaNoEncontrada(req, res) {
 }
 
 // Se ejecuta cuando ocurre un error en cualquier parte del servidor.
-// Express sabe que es un manejador de errores porque recibe 4 parametros.
 function manejarErrores(err, req, res, next) {
-    // Este error lo genera express.json() cuando el body no es un JSON valido.
+    // Cuando el body en JSON no es valido.
     if (err.type === "entity.parse.failed") {
         return res.status(400).json({ error: "El body enviado no es un JSON válido" });
     }
 
-    // Fallo algo con IGDB (claves mal, IGDB caido, limite de pedidos...).
-    // 502 significa "el servidor al que le pedi los datos fallo".
+    // Fallo algo con IGDB.
     if (err.esIgdb) {
         console.log(err.message);
         return res.status(502).json({ error: "No se pudieron obtener los datos de IGDB" });

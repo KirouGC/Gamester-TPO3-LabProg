@@ -22,13 +22,10 @@ function obtenerJuegos(cantidad, from, seccion, genero) {
     };
 }
 
-// Devuelve el juego con ese id, o undefined si no existe.
 function obtenerJuegoPorId(id) {
     return juegos.find((juego) => juego.id === id);
 }
 
-// Devuelve true si existe un juego con ese id. El id viene de la URL, asi que es un texto:
-// "1" es un juego local y "igdb-1942" es un juego de IGDB (se le pregunta a IGDB).
 async function existeJuego(idJuego) {
     if (igdbService.esIdIgdb(idJuego)) {
         return igdbService.estaConfigurado() && Boolean(await igdbService.obtenerJuegoIgdb(idJuego));
@@ -37,9 +34,7 @@ async function existeJuego(idJuego) {
     return obtenerJuegoPorId(Number(idJuego)) !== undefined;
 }
 
-// Crea un juego nuevo con los datos recibidos y lo agrega a la lista.
 function crearJuego(datos) {
-    // El id nuevo es el id del ultimo juego + 1.
     const ultimoJuego = juegos[juegos.length - 1];
 
     const juego = {
@@ -59,8 +54,6 @@ function crearJuego(datos) {
     return juego;
 }
 
-// Reemplaza los datos de un juego que ya existe.
-// Devuelve el juego actualizado, o undefined si no existe.
 function actualizarJuego(id, datos) {
     const juego = obtenerJuegoPorId(id);
 

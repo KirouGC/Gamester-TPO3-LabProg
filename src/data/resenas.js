@@ -1,5 +1,4 @@
 // Lista de reseñas de Gamester.
-// Igual que los juegos, viven en este arreglo mientras el servidor esta prendido.
 //
 // Cada reseña tiene:
 //   id       -> numero unico

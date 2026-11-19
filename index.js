@@ -11,10 +11,9 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/api", apiRoutes);
 
-// El manejador de errores siempre va ultimo.
 app.use(errores.manejarErrores);
 
 app.listen(config.PORT, () => console.log("Servidor abierto en http://localhost:"+config.PORT));
 
-// Al prender el servidor se piden a IGDB los datos de los juegos (si hay claves en .env).
+// Al prender el servidor se piden a IGDB los datos de los juegos (si es que está presente la clave en .env).
 igdbService.cargarDatos();
